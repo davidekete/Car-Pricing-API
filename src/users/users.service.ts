@@ -17,6 +17,9 @@ export class UsersService {
   }
 
   async findOne(id: number): Promise<User> {
+    if (!id) {
+      return null;
+    }
     try {
       const user = await this.repo.findOneByOrFail({ id });
 
