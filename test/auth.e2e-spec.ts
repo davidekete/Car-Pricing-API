@@ -17,7 +17,7 @@ describe('Authentication System(e2e)', () => {
   });
 
   it('Handles signup request', () => {
-    const email = 'unique1@un.com';
+    const email = 'unique551@un.com';
 
     return request(app.getHttpServer())
       .post('/auth/signup')
@@ -28,5 +28,23 @@ describe('Authentication System(e2e)', () => {
         expect(id).toBeDefined();
         expect(email).toEqual(email);
       });
+  });
+
+  it('Signup as a new user and get the currently logged in user', async () => {
+    const email = 'e2e@hm.com';
+
+    const res = await request(app.getHttpServer())
+      .post('/auth/signup')
+      .send({ email, password: 'askkl' })
+      .expect(201);
+
+    const cookie = res.get('Set-Cookie');
+
+    const { body } = await request(app.getHttpServer())
+      .get('/auth/whoami')
+      .set('Cookie', cookie)
+      .expect(200);
+
+    expect(body.email).toEqual(email);
   });
 });
