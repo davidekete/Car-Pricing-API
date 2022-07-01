@@ -69,9 +69,7 @@ export class UsersController {
     id: number,
   ) {
     const user = this.usersService.findOne(id);
-    if (!user) {
-      throw new NotFoundException();
-    }
+
     return user;
   }
 

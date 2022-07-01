@@ -22,6 +22,11 @@ export class UsersService {
     }
     try {
       const user = await this.repo.findOneByOrFail({ id });
+      console.log(user);
+
+      // if (!user) {
+      //   throw new NotFoundException();
+      // }
 
       return user;
     } catch (error) {
