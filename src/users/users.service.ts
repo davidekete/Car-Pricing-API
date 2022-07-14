@@ -17,20 +17,13 @@ export class UsersService {
   }
 
   async findOne(id: number): Promise<User> {
-    if (!id) {
-      return null;
-    }
     try {
       const user = await this.repo.findOneByOrFail({ id });
-      console.log(user);
-
-      // if (!user) {
-      //   throw new NotFoundException();
-      // }
 
       return user;
     } catch (error) {
       console.log(error);
+      throw new NotFoundException('User not found');
     }
   }
 
