@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 import { Expose, Transform } from 'class-transformer';
-import { User } from '../../users/user.entity';
 
 export class ReportDto {
   @Expose()

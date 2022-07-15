@@ -31,7 +31,7 @@ export class ReportsService {
     }
   }
 
-  async createEstimate(estimateDto: GetEstimateDto) {
+  createEstimate(estimateDto: GetEstimateDto) {
     return this.repo
       .createQueryBuilder()
       .select('AVG(price)', 'price')
